@@ -25,7 +25,7 @@ public class Database {
         }
         return cnx;
     }
-    
+
     public static void main(String[] args) {
         Connection cnx = getConnexion();
         if (cnx != null) {
