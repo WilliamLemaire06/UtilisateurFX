@@ -12,11 +12,12 @@ public class StartApplication extends Application {
     public static Stage mainStage;
 
     public void start(Stage stage) throws IOException {
+        mainStage = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(StartApplication.class.getResource("accueil/Loginview.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
+        Scene scene = new Scene(fxmlLoader.load());
+        mainStage.setTitle("Hello!");
+        mainStage.setScene(scene);
+        mainStage.show();
     }
 
     public static void changeScene(String nomDuFichierFxml) throws IOException {

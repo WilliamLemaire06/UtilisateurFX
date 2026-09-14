@@ -36,7 +36,7 @@ public class LoginController {
             labelErreur.setText("T'es qui !");
         }
     }
-    }
+
 
     @FXML
     public void inscription(ActionEvent actionEvent) throws IOException {
