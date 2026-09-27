@@ -2,26 +2,30 @@ package model;
 
 public class Utilisateur {
 
+    private int id_utilisateur;
     private String nom;
     private String prenom;
     private String email;
     private String mdp;
-    private String confirmationMdp;
+
     private String role;
 
-    public Utilisateur(int id,String nom, String prenom, String email, String mdp, String confirmationMdp, String role) {
+    public Utilisateur(int id_utilisateur,String nom, String prenom, String email, String mdp, String role) {
+        this.id_utilisateur=id_utilisateur;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.mdp = mdp;
-        this.confirmationMdp = confirmationMdp;
+        this.role = role;
+
     }
-    public Utilisateur(String nom, String prenom, String email, String mdp, String confirmationMdp,String role) {
+    public Utilisateur(String nom, String prenom, String email, String mdp,String role) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.mdp = mdp;
-        this.confirmationMdp = confirmationMdp;
+        this.role = role;
+
     }
     public Utilisateur(String email,String mdp) {
         this.email = email;
@@ -73,11 +77,12 @@ public class Utilisateur {
         this.mdp = mdp;
     }
 
-    public String getConfirmationMdp() {
-        return confirmationMdp;
+    public int getId_utilisateur() {
+        return id_utilisateur;
     }
 
-    public void setConfirmationMdp(String confirmationMdp) {
-        this.confirmationMdp = confirmationMdp;
+    public void setId_utilisateur(int id_utilisateur) {
+        this.id_utilisateur = id_utilisateur;
     }
+
 }

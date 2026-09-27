@@ -1,15 +1,25 @@
 package appli.accueil;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import appli.StartApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import model.Utilisateur;
+
+import repository.UtilisateurRepository;
 
 import java.io.IOException;
 
 public class LoginController {
+
+
+
+    private PasswordEncoder encoder = new BCryptPasswordEncoder();
+    private UtilisateurRepository uR = new UtilisateurRepository();
 
     @FXML
     private TextField ajoutEmail;
@@ -21,19 +31,23 @@ public class LoginController {
     private Label labelErreur;
 
     @FXML
-    public void connexion(ActionEvent event) {
+    public void connexion(ActionEvent event) throws Exception {
         String email = ajoutEmail.getText();
         String mdp = ajoutMdp.getText();
-        System.out.println("email : " + email);
-        System.out.println("mdp : " + mdp);
 
-        if(email.isEmpty() || mdp.isEmpty()){
+        if (email.isEmpty() || mdp.isEmpty()) {
             labelErreur.setText("Veuillez rentrez les infos !");
+            return;
+        }
 
-        }else if(email.equals("willi@goat.fr") && mdp.equals("FRANCE")){
-            labelErreur.setText("Vous etes connectez !");
-        }else{
-            labelErreur.setText("T'es qui !");
+        Utilisateur u = uR.getUtilisateurParEmail(email);
+
+        if (u == null) {
+            labelErreur.setText("Email inconnu !");
+        } else if (!encoder.matches(mdp, u.getMdp())) {
+            labelErreur.setText("Mot de passe incorrect !");
+        } else {
+            StartApplication.changeScene("AccueilView.fxml");
         }
     }
 

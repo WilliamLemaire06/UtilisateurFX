@@ -3,6 +3,12 @@ module appli {
     requires javafx.fxml;
     requires java.desktop;
     requires java.sql;
+    requires spring.security.crypto;
+
+
+    requires spring.core;
+    requires org.apache.commons.logging;
+
 
 
     opens appli to javafx.fxml;
